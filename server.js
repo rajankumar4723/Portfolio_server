@@ -21,5 +21,4 @@ app.use("/api", contactRoutes);
 app.get("/", (req, res) => {
     res.send("Mahadev");
 });
-const PORT = process.env.PORT || 6000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(process.env.PORT || 5000, () => console.log(`🚀 Server running on port ${process.env.PORT}`));
