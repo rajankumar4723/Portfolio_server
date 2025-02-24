@@ -1,43 +1,18 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import connectDB from './database/db.js'; // Ensure this function connects to DB
-import contactRoutes from './routes/contactRoutes.js';
+import app from "./App.js";  // ✅ Correct Default Import
+import connectDB from "./database/db.js"; // ✅ Use Default Import
+import dotenv from "dotenv";
 
-dotenv.config(); // Fixed dotenv config
+// ✅ Load environment variables
+dotenv.config({ path: "./database/config.env" });
 
-// Connect to Database
-const startServer = async () => {
-    try {
-        await connectDB(); // Ensure database connection is successful
-        console.log("Database connected successfully");
+// ✅ Connect to Database and Start Server
+connectDB().then(() => {
+    const PORT = process.env.PORT || 5000;
 
-        const app = express();
-        app.use(express.json());
-        app.use(cors());
-
-        app.use('/api/contact', contactRoutes);
-
-        const port = process.env.PORT;
-        // const HOST = '0.0.0.0'; // Ensure Render detects the open port
-
-        app.get('/', (req, res) => {
-            res.send('Hello World!')
-        })
-
-        app.listen(port, () => {
-            console.log(`🚀 Server running on http://${port}`);
-            // console.log(`🚀 Server running on http://${HOST}:${port}`);
-
-        });
-        // app.listen(port,HOST, () => {
-        //     console.log(`🚀 Server running on http://${HOST}:${port}`);
-
-        // });
-    } catch (error) {
-        console.error("Database connection failed:", error);
-        process.exit(1);
-    }
-};
-
-startServer();
+    app.listen(PORT, () => {
+        console.log(`🚀 Server is running on port: ${PORT}`);
+    });
+}).catch((error) => {
+    console.error("❌ Database connection failed:", error);
+    process.exit(1);
+});

@@ -1,14 +1,8 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-// Load environment variables
-dotenv.config({
-  path:"database/config.env"
-});  // ✅ Load dotenv to access process.env
 
 const connectDB = async () => {
     try {
-        const uri = process.env.MONGO_URI;
+        const uri = process.env.MONGO_URI; // ✅ process.env will work (loaded in server.js)
         if (!uri) {
             throw new Error("❌ MONGO_URI is not defined in .env file");
         }
@@ -25,4 +19,5 @@ const connectDB = async () => {
     }
 };
 
+// ✅ Export as default
 export default connectDB;

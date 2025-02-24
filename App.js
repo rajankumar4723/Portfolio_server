@@ -1,19 +1,22 @@
-// import express from "express";
-// import userRouter from "./routes/contactRoutes.js";
-// import dotenv from "dotenv";
+import express from "express";
+import userRouter from "./routes/contactRoutes.js";
+import { config } from "dotenv";
 
-// // ✅ Load environment variables before using them
-// dotenv.config();
+// Initialize Express
+  const app = express();
 
-// export const app = express();
+// ✅ Load environment variables
+config({ path: "./database/config.env" });
 
-// // ✅ Middleware
-// app.use(express.json());
+// ✅ Middleware
+app.use(express.json());    
 
-// // ✅ Routes
-// app.use("/api/v1/add", userRouter);
+// ✅ Routes
+app.use('/api/contact', userRouter);
 
-// // ✅ Test API
-// app.get("/", (req, res) => {
-//   res.send("✅ Server is working!");
-// });
+app.get("/", (req, res) => {
+    res.send("Server is working!");
+});
+
+// ✅ Export the Express app
+export default app;
