@@ -18,7 +18,7 @@ const startServer = async () => {
 
         app.use('/api/contact', contactRoutes);
 
-        const port = process.env.PORT || 5000;
+        const port = process.env.PORT;
         // const HOST = '0.0.0.0'; // Ensure Render detects the open port
 
         app.get('/', (req, res) => {
