@@ -4,7 +4,7 @@ import cors from 'cors';
 import connectDB from './database/db.js'; // Ensure this function connects to DB
 import contactRoutes from './routes/contactRoutes.js';
 
-dotenv.config({ path: "./database/.env" }); // Fixed dotenv config
+dotenv.config(); // Fixed dotenv config
 
 // Connect to Database
 const startServer = async () => {
