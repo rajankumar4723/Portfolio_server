@@ -25,8 +25,8 @@ const startServer = async () => {
             res.send('Hello World!')
         })
 
-        app.listen(port, () => {
-            console.log(`Server running on port ${port}`);
+        app.listen(port,HOST, () => {
+            console.log(`🚀 Server running on http://${HOST}:${port}`);
         });
     } catch (error) {
         console.error("Database connection failed:", error);
