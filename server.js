@@ -19,15 +19,21 @@ const startServer = async () => {
         app.use('/api/contact', contactRoutes);
 
         const port = process.env.PORT || 5000;
-        const HOST = '0.0.0.0'; // Ensure Render detects the open port
+        // const HOST = '0.0.0.0'; // Ensure Render detects the open port
 
         app.get('/', (req, res) => {
             res.send('Hello World!')
         })
 
-        app.listen(port,HOST, () => {
-            console.log(`🚀 Server running on http://${HOST}:${port}`);
+        app.listen(port, () => {
+            console.log(`🚀 Server running on http://${port}`);
+            // console.log(`🚀 Server running on http://${HOST}:${port}`);
+
         });
+        // app.listen(port,HOST, () => {
+        //     console.log(`🚀 Server running on http://${HOST}:${port}`);
+
+        // });
     } catch (error) {
         console.error("Database connection failed:", error);
         process.exit(1);
